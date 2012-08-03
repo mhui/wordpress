@@ -128,14 +128,13 @@ class Facebook_WP_Extend extends WP_Facebook {
 	}
 
   protected function clearPersistentData($key) {
-    if (!in_array($key, self::$kSupportedKeys)) {
-      self::errorLog('Unsupported key passed to clearPersistentData.');
-      return;
-    }
+      if (!in_array($key, self::$kSupportedKeys)) {
+          self::errorLog('Unsupported key passed to clearPersistentData.');
+          return;
+      }
 
-    fb_delete_user_meta( get_current_user_id(), $key);
+      fb_delete_user_meta( get_current_user_id(), $key);
   }
-
   protected function clearAllPersistentData() {
     foreach (self::$kSupportedKeys as $key) {
       $this->clearPersistentData($key);
